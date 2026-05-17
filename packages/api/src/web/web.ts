@@ -132,6 +132,11 @@ export async function loadWebSearchAuth({
       specificService = webSearchConfig.searchProvider as unknown as ServiceType;
     } else if (category === SearchCategories.SCRAPERS && webSearchConfig?.scraperProvider) {
       specificService = webSearchConfig.scraperProvider as unknown as ServiceType;
+
+      if (specificService === 'none') {
+        authResult.scraperProvider = specificService as ScraperProviders;
+        return [true, false];
+      }
     } else if (category === SearchCategories.RERANKERS && webSearchConfig?.rerankerType) {
       specificService = webSearchConfig.rerankerType as unknown as ServiceType;
 

@@ -17,6 +17,14 @@ type ProgressKeys =
   | 'com_ui_web_search_reading';
 
 const MAX_VISIBLE_FAVICONS = 3;
+const MAX_QUERY_LENGTH = 40;
+
+function truncateQuery(q: string): string {
+  if (q.length <= MAX_QUERY_LENGTH) {
+    return q;
+  }
+  return `${q.slice(0, MAX_QUERY_LENGTH)}...`;
+}
 
 function collectSources(results: Record<string, SearchResultData>): ValidSource[] {
   const sourceMap = new Map<string, ValidSource>();
@@ -119,6 +127,17 @@ export default function WebSearch({
     return '0';
   }, [attachments]);
 
+  const query = useMemo(() => {
+    if (attachments) {
+      for (const att of attachments) {
+        if (att.type === Tools.web_search && att[Tools.web_search]?.query) {
+          return att[Tools.web_search].query;
+        }
+      }
+    }
+    return searchResults?.[ownTurn]?.query;
+  }, [attachments, searchResults, ownTurn]);
+
   const allSources = useMemo((): ValidSource[] => {
     if (attachments) {
       const turnMap: Record<string, SearchResultData> = {};
@@ -217,7 +236,10 @@ export default function WebSearch({
           ) : (
             <Globe className="size-4 shrink-0 text-text-secondary" aria-hidden="true" />
           )}
-          <span className="font-medium">{completedText}</span>
+          <span className="font-medium" title={query || undefined}>
+            {completedText}
+            {query ? ` (${truncateQuery(query)})` : ''}
+          </span>
           {hasSourceData && (
             <ChevronDown
               className={cn(
@@ -268,8 +290,8 @@ export default function WebSearch({
       </span>
       {showSources && <StackedFavicons sources={processedSources} start={-5} />}
       <Globe className="size-4 shrink-0 text-text-secondary" aria-hidden="true" />
-      <span className="tool-status-text shimmer font-medium text-text-secondary">
-        {progressText}
+      <span className="tool-status-text shimmer font-medium text-text-secondary" title={query || undefined}>
+        {progressText}{query ? ` (${truncateQuery(query)})` : ''}
       </span>
     </div>
   );

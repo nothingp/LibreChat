@@ -675,6 +675,9 @@ endpoints:
 #   # Content scrapers
 #   firecrawlApiKey: '${FIRECRAWL_API_KEY}'
 #   firecrawlApiUrl: '${FIRECRAWL_API_URL}'
+#   # Volcengine (search provider)
+#   volcengineApiKey: '${VOLCENGINE_API_KEY}'
+#   volcengineSearchType: web        # 'web' (JSON response) or 'web_summary' (SSE response, default: web)
 #
 # Tavily as both search and scraper provider example:
 # webSearch:
