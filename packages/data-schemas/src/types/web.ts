@@ -10,6 +10,7 @@ export type TWebSearchKeys =
   | 'tavilyApiKey'
   | 'tavilySearchUrl'
   | 'tavilyExtractUrl'
+  | 'volcengineApiKey'
   | 'jinaApiKey'
   | 'jinaApiUrl'
   | 'cohereApiKey';

@@ -16,6 +16,9 @@ export const webSearchAuth = {
       tavilyApiKey: 1 as const,
       tavilySearchUrl: 0 as const,
     },
+    volcengine: {
+      volcengineApiKey: 1 as const,
+    },
   },
   scrapers: {
     firecrawl: {
@@ -83,6 +86,8 @@ export function loadWebSearchConfig(
   const jinaApiKey = config?.jinaApiKey ?? '${JINA_API_KEY}';
   const jinaApiUrl = config?.jinaApiUrl ?? '${JINA_API_URL}';
   const cohereApiKey = config?.cohereApiKey ?? '${COHERE_API_KEY}';
+  const volcengineApiKey = config?.volcengineApiKey ?? '${VOLCENGINE_API_KEY}';
+  const volcengineSearchType = config?.volcengineSearchType ?? 'web';
   const safeSearch = config?.safeSearch ?? SafeSearchTypes.MODERATE;
   const rerankerType = config?.rerankerType;
 
@@ -100,7 +105,10 @@ export function loadWebSearchConfig(
     firecrawlApiKey,
     firecrawlApiUrl,
     firecrawlVersion,
+    firecrawlVersion,
     searxngInstanceUrl,
+    volcengineApiKey,
+    volcengineSearchType,
     rerankerType,
   };
 }

@@ -1154,12 +1154,14 @@ export enum SearchProviders {
   SERPER = 'serper',
   SEARXNG = 'searxng',
   TAVILY = 'tavily',
+  VOLCENGINE = 'volcengine',
 }
 
 export enum ScraperProviders {
   FIRECRAWL = 'firecrawl',
   SERPER = 'serper',
   TAVILY = 'tavily',
+  NONE = 'none',
 }
 
 export enum RerankerTypes {
@@ -1184,6 +1186,8 @@ export const webSearchSchema = z.object({
   tavilyApiKey: z.string().optional().default('${TAVILY_API_KEY}'),
   tavilySearchUrl: z.string().optional().default('${TAVILY_SEARCH_URL}'),
   tavilyExtractUrl: z.string().optional().default('${TAVILY_EXTRACT_URL}'),
+  volcengineApiKey: z.string().optional().default('${VOLCENGINE_API_KEY}'),
+  volcengineSearchType: z.enum(['web', 'web_summary']).optional().default('web'),
   jinaApiKey: z.string().optional().default('${JINA_API_KEY}'),
   jinaApiUrl: z.string().optional().default('${JINA_API_URL}'),
   cohereApiKey: z.string().optional().default('${COHERE_API_KEY}'),

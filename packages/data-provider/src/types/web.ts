@@ -42,6 +42,8 @@ export type ResultReference = {
 };
 export interface SearchResultData {
   turn?: number;
+  query?: string;
+  summary?: string;
   organic?: ProcessedOrganic[];
   topStories?: ProcessedTopStory[];
   images?: ImageResult[];

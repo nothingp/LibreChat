@@ -92,9 +92,19 @@ export default function ApiKeyDialog({
         },
       },
     },
+    {
+      key: SearchProviders.VOLCENGINE,
+      label: localize('com_ui_web_search_provider_volcengine'),
+      inputs: {
+        volcengineApiKey: {
+          placeholder: localize('com_ui_enter_api_key'),
+          type: 'password' as const,
+        },
+      },
+    },
   ];
 
-  const rerankerOptions: DropdownOption[] = [
+const rerankerOptions: DropdownOption[] = [
     {
       key: RerankerTypes.JINA,
       label: localize('com_ui_web_search_reranker_jina'),
