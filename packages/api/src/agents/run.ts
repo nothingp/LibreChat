@@ -997,6 +997,7 @@ export async function createRun({
     calibrationRatio,
     indexTokenCountMap,
     eagerEventToolExecution: { enabled: true },
+    toolExecution: { engine: 'local' },
     ...(enableToolOutputReferences && {
       toolOutputReferences: { enabled: true },
     }),
